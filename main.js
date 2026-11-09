@@ -1,0 +1,5 @@
+const toggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('#mainnav');
+toggle?.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!expanded));toggle.setAttribute('aria-label',expanded?'Ouvrir le menu':'Fermer le menu');nav.classList.toggle('open',!expanded)});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav?.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Ouvrir le menu');toggle.focus()}});
+if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-ready');const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('pending');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(element=>{element.classList.add('pending');observer.observe(element)});}
